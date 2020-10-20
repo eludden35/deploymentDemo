@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    {% load static %}
+    <link rel="stylesheet" href="{% static 'style.css' %}">
+</head>
+<body>
+    <div class="container">
+        <!-- <h1>Welcome to Trip Buddy!</h1> -->
+        <div class="col">
+            <h1>Registration</h1>
+            <div class="rMessage">
+            {% if messages %}
+                    <ul style="list-style: none;">
+                        {% for message in messages %}
+                            <li>
+                                {{message}}
+                            </li>
+                        {% endfor %}
+                    </ul>
+                {% endif %}
+            </div>
+            <form action="/reg" method="POST" class="reg">
+                {% csrf_token %}
+                <ul class="form-style-1">
+                    <li><input type="text" name="name" placeholder="Full Name"></li>
+                    <li><input type="text" name="uName" placeholder="Create Username"></li>
+                    <li><input type="password" name="pwd" placeholder="Create Password"></li>
+                    <li><input type="password" name="cpw" placeholder="Confirm Pasword"></li>
+                    <li><input id="btn1" type="submit" value="Register"></li>
+                </ul>
+            </form>
+        </div>
+        <div class="col">
+            <h1>Log-In</h1>
+            <div class="rMessage">
+                {% if messages %}
+                        <ul style="list-style: none;">
+                            {% for message in messages %}
+                                <li>
+                                    {{message}}
+                                </li>
+                            {% endfor %}
+                        </ul>
+                {% endif %} 
+            </div>
+            <form action="/login" method="POST" class="log">
+                {% csrf_token %}
+                <ul class="form-style-1">
+                    <li><input type="text" name="uName" placeholder="Username"></li>
+                    <li><input type="password" name="pwd" placeholder="Password"></li>
+                    <li><input id="btn1" type="submit" value="Login"></li>
+                </ul>
+            </form>
+        </div>
+    </div>
+</body>
+</html>

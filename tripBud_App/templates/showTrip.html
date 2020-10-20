@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    {% load static %}
+    <link rel="stylesheet" href="{% static 'showStyle.css' %}">
+</head>
+<body>
+    <div class="container">
+        <div class="home">
+            <a href="/travels">Home</a>
+            <a href="/logout">Logout</a>
+            <h1>Trip to {{tripInfo.dest}}</h1>
+            <ul class="form-style-1">
+                <li><p>Planned By:</p> {{tripInfo.plan.name}}</li>
+                <li><p>Description:</p> {{tripInfo.desc}}</li>
+                <li><p>Travel Date From:</p> {{tripInfo.travStart.date}}</li>
+                <li><p>Travel Date to:</p> {{tripInfo.travEnd.date}}</li>
+            </ul>
+            <h2>Other users' joining the trip: </h2>
+            <ul class="form-style-1">
+                {% for i in tripJoin %}
+                    {% if i.id != tripInfo.plan.id %}
+                        <li>{{i.name}}</li>
+                    {% endif %}
+                {% endfor %}
+            </ul>
+        </div>
+    </div>
+</body>
+</html>

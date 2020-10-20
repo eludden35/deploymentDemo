@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    {% load static %}
+    <link rel="stylesheet" href="{% static 'addStyle.css' %}">
+</head>
+<body>
+    <div class="container">
+        <div class="home">
+            <a href="/travels">Home</a>
+            <a href="/logout">Logout</a>
+            <h1>Add a Trip</h1>
+            {% if messages %}
+                <ul style="list-style: none; color: red;">
+                    {% for message in messages %}
+                        <li>
+                            {{message}}
+                        </li>
+                    {% endfor %}
+                </ul>
+            {% endif %} 
+            <form action="/creation" method="POST">
+                {% csrf_token %}
+                <ul class="form-style-1">
+                    <li><input type="text" name="dest" placeholder="Trip Destination"></li>
+                    <li><input type="text" name="desc" placeholder="Trip Description"></li>
+                    <p>Travel Date From: </p> <li><input type="date" name="dtStart"></li>
+                    <p>Travel Date To: </p> <li><input type="date" name="dtEnd"></li>
+                    <li><input type="submit" value="Add"></li>
+                </ul>
+            </form>
+        </div>
+    </div>
+</body>
+</html>
